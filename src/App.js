@@ -5,24 +5,28 @@ import SiteList from "./selectSiteNumber";
 
 function App() {
   const [isParentData, setIsParentData] = React.useState({
-    siteNo: 1,
+    siteNo: "1",
+    dimensions: "Odd",
+    facing: "north",
+    east: "53.14961",
+    west: "40",
+    north: "23.35958",
+    south: "29.16667",
+    area: "1223.199925565625",
+    isCorner: 0,
+    enFacing: "1",
+    parkFacing: "1",
     syNo: "90/2",
-    isCorner: "N",
-    BMRDAApprovedNo: "NPA/LAO/13/2017-18",
-    E: 16.2,
-    W: 12.19,
-    N: 7.12,
-    S: 8.89,
-    ScE: "private property",
-    ScW: "Site.no 2",
-    ScN: "Road",
-    ScS: "private property",
-    Facing: "North",
+    eastSchedule: "Private property",
+    westSchedule: "Site.no 2",
+    northSchedule: "Road",
+    southSchedule: "Private property",
+    isSoldOut: "No",
   });
   const [initialPrice, setinitialPrice] = React.useState(1950);
 
   function handleOnPriceChange(e) {
-    setinitialPrice(e.target.value)
+    setinitialPrice(e.target.value);
   }
 
   return (
@@ -552,7 +556,9 @@ function App() {
                                 verticalAlign: "top",
                                 padding: "10px 0",
                               }}
-                            >{isParentData.dimensions}</td>
+                            >
+                              {isParentData.dimensions}
+                            </td>
                             <td
                               style={{
                                 fontSize: "12px",
@@ -826,7 +832,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                            {isParentData.area}
+                              {isParentData.area}
                             </td>
                             <td
                               style={{
@@ -853,11 +859,13 @@ function App() {
                               }}
                               align="right"
                             >
-                              {(isParentData.area * initialPrice).toLocaleString('en-IN', {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'INR'
-})}
+                              {(
+                                isParentData.area * initialPrice
+                              ).toLocaleString("en-IN", {
+                                maximumFractionDigits: 2,
+                                style: "currency",
+                                currency: "INR",
+                              })}
                             </td>
                           </tr>
                           <tr>
@@ -890,7 +898,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              {isParentData.isCorner ? 'Yes' : 'No'}
+                              {isParentData.isCorner ? "Yes" : "No"}
                             </td>
                             <td
                               style={{
@@ -917,11 +925,17 @@ function App() {
                               }}
                               align="right"
                             >
-                              {isParentData.isCorner === 0 ? 0: (isParentData.area * initialPrice * 0.1 ).toLocaleString('en-IN', {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'INR'
-})}
+                              {isParentData.isCorner === 0
+                                ? 0
+                                : (
+                                    isParentData.area *
+                                    initialPrice *
+                                    0.1
+                                  ).toLocaleString("en-IN", {
+                                    maximumFractionDigits: 2,
+                                    style: "currency",
+                                    currency: "INR",
+                                  })}
                             </td>
                           </tr>
                           <tr>
@@ -1063,15 +1077,22 @@ function App() {
                               }}
                               width={110}
                             >
-                              {isParentData.isCorner === 0 ? (isParentData.area * initialPrice).toLocaleString('en-IN', {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'INR'
-}): ((isParentData.area * initialPrice)+(isParentData.area * initialPrice * 0.1) ).toLocaleString('en-IN', {
-    maximumFractionDigits: 2,
-    style: 'currency',
-    currency: 'INR'
-})}
+                              {isParentData.isCorner === 0
+                                ? (
+                                    isParentData.area * initialPrice
+                                  ).toLocaleString("en-IN", {
+                                    maximumFractionDigits: 2,
+                                    style: "currency",
+                                    currency: "INR",
+                                  })
+                                : (
+                                    isParentData.area * initialPrice +
+                                    isParentData.area * initialPrice * 0.1
+                                  ).toLocaleString("en-IN", {
+                                    maximumFractionDigits: 2,
+                                    style: "currency",
+                                    currency: "INR",
+                                  })}
                             </td>
                           </tr>
                           <tr>
@@ -1085,7 +1106,7 @@ function App() {
                                 textAlign: "right",
                               }}
                             >
-                              Legal, Khatha & Documentation
+                              Other Expenditures
                             </td>
                             <td
                               style={{
@@ -1097,7 +1118,7 @@ function App() {
                                 textAlign: "right",
                               }}
                             >
-                              $15.00
+                              ₹25,000
                             </td>
                           </tr>
                           <tr>
@@ -1123,7 +1144,14 @@ function App() {
                                 textAlign: "right",
                               }}
                             >
-                              $15.00
+                              {(19.992 * isParentData.area).toLocaleString(
+                                "en-IN",
+                                {
+                                  maximumFractionDigits: 2,
+                                  style: "currency",
+                                  currency: "INR",
+                                }
+                              )}
                             </td>
                           </tr>
                           <tr>
@@ -1149,7 +1177,14 @@ function App() {
                                 textAlign: "right",
                               }}
                             >
-                              $15.00
+                              {(30 * isParentData.area).toLocaleString(
+                                "en-IN",
+                                {
+                                  maximumFractionDigits: 2,
+                                  style: "currency",
+                                  currency: "INR",
+                                }
+                              )}
                             </td>
                           </tr>
                           <tr>
@@ -1157,8 +1192,52 @@ function App() {
                               style={{
                                 fontSize: "12px",
 
-                                color: "#000",
+                                color: "#646a6e",
                                 lineHeight: "22px",
+                                verticalAlign: "top",
+                                textAlign: "right",
+                              }}
+                            >
+                              Registration
+                            </td>
+                            <td
+                              style={{
+                                fontSize: "12px",
+
+                                color: "#646a6e",
+                                lineHeight: "22px",
+                                verticalAlign: "top",
+                                textAlign: "right",
+                              }}
+                            >
+                              {isParentData.isCorner === 0
+                                ? (
+                                    isParentData.area *
+                                    initialPrice *
+                                    0.0665
+                                  ).toLocaleString("en-IN", {
+                                    maximumFractionDigits: 2,
+                                    style: "currency",
+                                    currency: "INR",
+                                  })
+                                : (
+                                    (isParentData.area * initialPrice +
+                                      isParentData.area * initialPrice * 0.1) *
+                                    0.0665
+                                  ).toLocaleString("en-IN", {
+                                    maximumFractionDigits: 2,
+                                    style: "currency",
+                                    currency: "INR",
+                                  })}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style={{
+                                fontSize: "14px",
+
+                                color: "#000",
+                                lineHeight: "30px",
                                 verticalAlign: "top",
                                 textAlign: "right",
                               }}
@@ -1167,41 +1246,48 @@ function App() {
                             </td>
                             <td
                               style={{
-                                fontSize: "12px",
+                                fontSize: "14px",
 
                                 color: "#000",
-                                lineHeight: "22px",
+                                lineHeight: "30px",
                                 verticalAlign: "top",
                                 textAlign: "right",
                               }}
                             >
-                              <strong>$344.90</strong>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td
-                              style={{
-                                fontSize: "12px",
-
-                                color: "#b0b0b0",
-                                lineHeight: "22px",
-                                verticalAlign: "top",
-                                textAlign: "right",
-                              }}
-                            >
-                              <small>TAX</small>
-                            </td>
-                            <td
-                              style={{
-                                fontSize: "12px",
-
-                                color: "#b0b0b0",
-                                lineHeight: "22px",
-                                verticalAlign: "top",
-                                textAlign: "right",
-                              }}
-                            >
-                              <small>$72.40</small>
+                              <strong>
+                                {isParentData.isCorner === 0
+                                  ? (
+                                      25000 +
+                                      isParentData.area * initialPrice +
+                                      isParentData.area *
+                                        initialPrice *
+                                        0.0665 +
+                                      19.992 * isParentData.area +
+                                      30 * isParentData.area
+                                    ).toLocaleString("en-IN", {
+                                      maximumFractionDigits: 2,
+                                      style: "currency",
+                                      currency: "INR",
+                                    })
+                                  : (
+                                      25000 +
+                                      (isParentData.area * initialPrice +
+                                        isParentData.area *
+                                          initialPrice *
+                                          0.1) +
+                                      (isParentData.area * initialPrice +
+                                        isParentData.area *
+                                          initialPrice *
+                                          0.1) *
+                                        0.0665 +
+                                      19.992 * isParentData.area +
+                                      30 * isParentData.area
+                                    ).toLocaleString("en-IN", {
+                                      maximumFractionDigits: 2,
+                                      style: "currency",
+                                      currency: "INR",
+                                    })}
+                              </strong>
                             </td>
                           </tr>
                           <tr className="hiddenMobile">
