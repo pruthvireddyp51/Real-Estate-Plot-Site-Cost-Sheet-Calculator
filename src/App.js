@@ -19,8 +19,6 @@ function App() {
     ScS: "private property",
     Facing: "North",
   });
-
-  console.log("isParentData" + JSON.stringify(isParentData));
   const [initialPrice, setinitialPrice] = React.useState(1950);
 
   function handleOnPriceChange(e) {
@@ -30,7 +28,7 @@ function App() {
   }
 
   function calCulateTotalSq(){
-    return ((((isParentData.E + isParentData.W)/2)*((isParentData.N + isParentData.S)/2))*(3.281*initialPrice))
+    return ((((isParentData.east + isParentData.west)/2)*((isParentData.north + isParentData.south)/2))*(3.281*initialPrice))
   }
 
   return (
@@ -506,7 +504,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              {isParentData.Facing}
+                              {isParentData.facing}
                             </td>
                             <td
                               style={{
@@ -560,7 +558,7 @@ function App() {
                                 verticalAlign: "top",
                                 padding: "10px 0",
                               }}
-                            >-</td>
+                            >{isParentData.dimensions}</td>
                             <td
                               style={{
                                 fontSize: "12px",
@@ -614,7 +612,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              {isParentData.E}
+                              {isParentData.east}
                             </td>
                             <td
                               style={{
@@ -669,7 +667,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              {isParentData.W}
+                              {isParentData.west}
                             </td>
                             <td
                               style={{
@@ -724,7 +722,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              {isParentData.N}
+                              {isParentData.north}
                             </td>
                             <td
                               style={{
@@ -779,7 +777,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              {isParentData.S}
+                              {isParentData.south}
                             </td>
                             <td
                               style={{
@@ -954,10 +952,10 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              <b>EAST</b> : Site No.18 <br />
-                              <b>WEST</b> : Road <br />
-                              <b>NORTH</b> : Site No.20 <br />
-                              <b>SOUTH</b> : Road
+                              <b>EAST</b> : {isParentData.eastSchedule} <br />
+                              <b>WEST</b> : {isParentData.westSchedule} <br />
+                              <b>NORTH</b> : {isParentData.northSchedule} <br />
+                              <b>SOUTH</b> : {isParentData.southSchedule}
                             </td>
                             <td
                               style={{
