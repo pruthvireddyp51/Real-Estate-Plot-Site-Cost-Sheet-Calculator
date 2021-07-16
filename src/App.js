@@ -23,12 +23,6 @@ function App() {
 
   function handleOnPriceChange(e) {
     setinitialPrice(e.target.value)
-    calCulateTotalSq()
-    console.log(initialPrice);
-  }
-
-  function calCulateTotalSq(){
-    return ((((isParentData.east + isParentData.west)/2)*((isParentData.north + isParentData.south)/2))*(3.281*initialPrice))
   }
 
   return (
@@ -449,7 +443,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              0
+                              NPA/LAO/13/2017-18
                             </td>
                             <td
                               style={{
@@ -832,7 +826,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                            {calCulateTotalSq()}
+                            {isParentData.area}
                             </td>
                             <td
                               style={{
@@ -859,7 +853,11 @@ function App() {
                               }}
                               align="right"
                             >
-                              ₹ 3,258,047
+                              {(isParentData.area * initialPrice).toLocaleString('en-IN', {
+    maximumFractionDigits: 2,
+    style: 'currency',
+    currency: 'INR'
+})}
                             </td>
                           </tr>
                           <tr>
@@ -892,7 +890,7 @@ function App() {
                                 padding: "10px 0",
                               }}
                             >
-                              Yes
+                              {isParentData.isCorner ? 'Yes' : 'No'}
                             </td>
                             <td
                               style={{
@@ -919,7 +917,11 @@ function App() {
                               }}
                               align="right"
                             >
-                              ₹ 325,805
+                              {isParentData.isCorner === 0 ? 0: (isParentData.area * initialPrice * 0.1 ).toLocaleString('en-IN', {
+    maximumFractionDigits: 2,
+    style: 'currency',
+    currency: 'INR'
+})}
                             </td>
                           </tr>
                           <tr>
@@ -1059,9 +1061,17 @@ function App() {
                                 textAlign: "right",
                                 whiteSpace: "nowrap",
                               }}
-                              width={80}
+                              width={110}
                             >
-                              $329.90
+                              {isParentData.isCorner === 0 ? (isParentData.area * initialPrice).toLocaleString('en-IN', {
+    maximumFractionDigits: 2,
+    style: 'currency',
+    currency: 'INR'
+}): ((isParentData.area * initialPrice)+(isParentData.area * initialPrice * 0.1) ).toLocaleString('en-IN', {
+    maximumFractionDigits: 2,
+    style: 'currency',
+    currency: 'INR'
+})}
                             </td>
                           </tr>
                           <tr>
