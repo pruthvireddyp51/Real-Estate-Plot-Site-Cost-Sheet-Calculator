@@ -1242,7 +1242,7 @@ function App() {
                                 textAlign: "right",
                               }}
                             >
-                              <strong>Grand Total (Incl.Tax)</strong>
+                              <strong>Grand Total</strong>
                             </td>
                             <td
                               style={{
